@@ -8,18 +8,21 @@
  *
  */
 
-package com.jalasoft.convert.controller.utils;
-
-import org.apache.commons.io.FilenameUtils;
-
-import java.io.File;
+package com.jalasoft.convert.model.convert.exception;
 
 /**
  * @version 1.1
  * @autor Magdalena
  */
-public class FileExtension {
-    public String getFileExtension(File file) {
-        return FilenameUtils.getExtension(file.getAbsolutePath());
+public class ConvertException extends Exception {
+
+    private static  final String MESSAGE = "Error convert file to pdf";
+
+    public ConvertException(String currentMessage, Throwable ex) {
+        super(currentMessage, ex);
+    }
+
+    public ConvertException(Throwable ex) {
+        super(MESSAGE, ex);
     }
 }

@@ -8,7 +8,7 @@
  *
  */
 
-package com.jalasoft.convert.model.exception;
+package com.jalasoft.convert.model.convert.exception;
 
 /**
  * @version 1.1
@@ -17,7 +17,7 @@ package com.jalasoft.convert.model.exception;
 public class ParameterInvalidException extends Exception {
 
     private static final String GENERAL_MESSAGE = "Invalid Parameter.";
-    private static final String EXTENSION_MESSAGE = "Invalid Extensions =%s, on field = %s";
+    private static final String EXTENSION_MESSAGE = "Invalid Extensions =%s, Please tried with =%s";
     public ParameterInvalidException() {
         super(GENERAL_MESSAGE);
     }
@@ -30,7 +30,7 @@ public class ParameterInvalidException extends Exception {
         super(GENERAL_MESSAGE, ex);
     }
 
-    public ParameterInvalidException(String extension, String field) {
-        super(String.format(EXTENSION_MESSAGE, extension, field));
+    public ParameterInvalidException(String extension, String exSupported) {
+        super(String.format(EXTENSION_MESSAGE, extension, exSupported));
     }
 }

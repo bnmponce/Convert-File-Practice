@@ -8,7 +8,10 @@
  *
  */
 
-package com.jalasoft.convert.model.parameter;
+package com.jalasoft.convert.model.convert.parameter;
+
+import com.jalasoft.convert.model.convert.exception.ParameterInvalidException;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 
@@ -27,12 +30,19 @@ public class Parameter {
         return inputFile;
     }
 
-    public void validateParam() throws Exception {
+    public String getFileExtension() {
+        return FilenameUtils.getExtension(inputFile.getAbsolutePath());
+    }
+
+    public void validateParam() throws ParameterInvalidException {
         if (inputFile.isHidden()) {
-            throw new Exception("Error is hidden");
+            throw new ParameterInvalidException();
         }
         if (!inputFile.isFile()) {
-            throw new Exception("Error is not File");
+            throw new ParameterInvalidException();
+        }
+        if(getFileExtension().equals("xlsx")) {
+            throw new ParameterInvalidException(getFileExtension(), ".docx");
         }
     }
 }

@@ -8,21 +8,24 @@
  *
  */
 
-package com.jalasoft.convert.model.exception;
+package com.jalasoft.convert.model.result;
 
 /**
  * @version 1.1
  * @autor Magdalena
  */
-public class ConvertException extends Exception {
+public class Result {
+    private String pathResult;
 
-    private static  final String MESSAGE = "Error convert file to pdf";
-
-    public ConvertException(String currentMessage, Throwable ex) {
-        super(currentMessage, ex);
+    public Result(String pathResult) {
+        this.pathResult = pathResult;
     }
 
-    public ConvertException(Throwable ex) {
-        super(MESSAGE, ex);
+    public String getPathResult() {
+        return pathResult;
+    }
+
+    public void setPathResult(String pathResult) {
+        this.pathResult = pathResult;
     }
 }
