@@ -10,19 +10,21 @@
 
 package com.jalasoft.convert.model.parameter;
 
+import com.jalasoft.convert.model.exception.ParameterInvalidException;
+
 import java.io.File;
 
 /**
  * @version 1.1
  * @autor Magdalena
  */
-public class ExtractParam extends Parameter {
-    private String lang;
+public class ConvertParam extends Parameter {
+    private String extension;
     private String testData;
 
-    public ExtractParam(File file, String lang, String testData) {
+    public ConvertParam(File file, String extension, String testData) {
         super(file);
-        this.lang = lang;
+        this.extension = extension;
         this.testData = testData;
     }
 
@@ -34,19 +36,22 @@ public class ExtractParam extends Parameter {
         this.testData = testData;
     }
 
-    public String getLang() {
-        return lang;
+    public String getExtension() {
+        return extension;
     }
 
-    public void setLang(String lang) {
-        this.lang = lang;
+    public void setLang(String extension) {
+        this.extension = extension;
     }
 
     @Override
     public void validateParam() throws Exception {
         super.validateParam();
-        if (lang.trim().isEmpty()) {
-            throw new Exception("lan is empty");
+        if (extension.trim().isEmpty()) {
+            throw new ParameterInvalidException();
+        }
+        if(!"docx".equals(extension)) {
+            throw new ParameterInvalidException(extension, ".pdf");
         }
     }
 }

@@ -19,7 +19,7 @@ public class Response {
     String error;
     String status;
 
-    public Response (String message, String error, String status) {
+    public Response(String message, String error, String status) {
         this.message = message;
         this.error = error;
         this.status = status;
