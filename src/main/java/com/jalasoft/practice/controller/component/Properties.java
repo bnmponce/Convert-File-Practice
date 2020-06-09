@@ -8,7 +8,7 @@
  *
  */
 
-package com.jalasoft.convert.controller.component;
+package com.jalasoft.practice.controller.component;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

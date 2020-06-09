@@ -8,21 +8,24 @@
  *
  */
 
-package com.jalasoft.convert.model.convert.exception;
+package com.jalasoft.practice.controller.response;
 
 /**
  * @version 1.1
  * @autor Magdalena
  */
-public class ConvertException extends Exception {
+public abstract class Response<T> {
+    T status;
 
-    private static  final String MESSAGE = "Error convert file to pdf";
-
-    public ConvertException(String currentMessage, Throwable ex) {
-        super(currentMessage, ex);
+    public Response(T status) {
+        this.status = status;
     }
 
-    public ConvertException(Throwable ex) {
-        super(MESSAGE, ex);
+    public T getStatus() {
+        return status;
+    }
+
+    public void setStatus(T status) {
+        this.status = status;
     }
 }

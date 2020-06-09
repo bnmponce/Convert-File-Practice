@@ -8,7 +8,7 @@
  *
  */
 
-package com.jalasoft.convert.model.convert.exception;
+package com.jalasoft.practice.model.convert.exception;
 
 /**
  * @version 1.1

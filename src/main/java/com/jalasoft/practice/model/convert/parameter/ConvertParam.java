@@ -8,7 +8,7 @@
  *
  */
 
-package com.jalasoft.convert.model.convert.parameter;
+package com.jalasoft.practice.model.convert.parameter;
 
 import java.io.File;
 import java.io.InputStream;

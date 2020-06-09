@@ -8,7 +8,7 @@
  *
  */
 
-package com.jalasoft.convert.model.result;
+package com.jalasoft.practice.model.result;
 
 /**
  * @version 1.1

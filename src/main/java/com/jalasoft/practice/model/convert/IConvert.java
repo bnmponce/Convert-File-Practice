@@ -8,12 +8,12 @@
  *
  */
 
-package com.jalasoft.convert.model.convert;
+package com.jalasoft.practice.model.convert;
 
-import com.jalasoft.convert.model.convert.exception.ConvertException;
-import com.jalasoft.convert.model.convert.exception.ParameterInvalidException;
-import com.jalasoft.convert.model.convert.parameter.ConvertParam;
-import com.jalasoft.convert.model.result.Result;
+import com.jalasoft.practice.model.convert.exception.ConvertException;
+import com.jalasoft.practice.model.convert.exception.ParameterInvalidException;
+import com.jalasoft.practice.model.convert.parameter.ConvertParam;
+import com.jalasoft.practice.model.result.Result;
 
 public interface IConvert {
     Result convert(ConvertParam param) throws ParameterInvalidException, ConvertException;

@@ -8,9 +8,9 @@
  *
  */
 
-package com.jalasoft.convert.model.convert.parameter;
+package com.jalasoft.practice.model.convert.parameter;
 
-import com.jalasoft.convert.model.convert.exception.ParameterInvalidException;
+import com.jalasoft.practice.model.convert.exception.ParameterInvalidException;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;

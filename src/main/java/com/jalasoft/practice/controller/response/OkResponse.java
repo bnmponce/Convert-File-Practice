@@ -8,21 +8,19 @@
  *
  */
 
-package com.jalasoft.convert.controller.response;
+package com.jalasoft.practice.controller.response;
 
 /**
  * @version 1.1
  * @autor Magdalena
  */
-public class Response {
+public class OkResponse<T> extends Response {
     String message;
-    String error;
-    String status;
 
-    public Response(String message, String error, String status) {
+    public OkResponse(String message, T status) {
+        super(status);
         this.message = message;
-        this.error = error;
-        this.status = status;
+
     }
 
     public String getMessage() {
@@ -33,19 +31,4 @@ public class Response {
         this.message = message;
     }
 
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }

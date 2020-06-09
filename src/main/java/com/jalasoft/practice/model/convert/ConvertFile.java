@@ -8,32 +8,33 @@
  *
  */
 
-package com.jalasoft.convert.model.convert;
+package com.jalasoft.practice.model.convert;
 
 import com.documents4j.api.DocumentType;
 import com.documents4j.api.IConverter;
 import com.documents4j.job.LocalConverter;
-import com.jalasoft.convert.model.convert.exception.ConvertException;
-import com.jalasoft.convert.model.convert.exception.ParameterInvalidException;
-import com.jalasoft.convert.model.convert.parameter.ConvertParam;
-import com.jalasoft.convert.model.result.Result;
+import com.jalasoft.practice.model.convert.exception.ConvertException;
+import com.jalasoft.practice.model.convert.exception.ParameterInvalidException;
+import com.jalasoft.practice.model.convert.parameter.ConvertParam;
+import com.jalasoft.practice.model.result.Result;
 
 
 /**
  * @version 1.1
  * @autor Magdalena
  */
-public class ConvertFile {
+public class ConvertFile implements IConvert {
 
-    public Result convertFile(ConvertParam param) throws ParameterInvalidException, ConvertException {
-        IConverter converter = LocalConverter.builder().build();
+    @Override
+    public Result convert(ConvertParam param) throws ParameterInvalidException, ConvertException {
         param.validateParam();
 
         try {
+            IConverter converter = LocalConverter.builder().build();
             converter.convert(param.getInputStream()).as(DocumentType.DOCX).
                     to(param.getOutputStream()).as(DocumentType.PDF).execute();
             param.getOutputStream().close();
-            return new Result("Success");
+            return new Result("File converted successfully");
         } catch (Exception e) {
             throw new ConvertException(e);
         }
