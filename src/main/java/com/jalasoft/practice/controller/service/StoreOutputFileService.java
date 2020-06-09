@@ -28,19 +28,26 @@ import java.nio.file.Paths;
  * @autor Magdalena
  */
 @Service
-public class FileService {
+public class StoreOutputFileService implements IStoreFile {
 
     @Autowired
     private Properties properties;
 
+    @Override
     public File store(MultipartFile inputFile) throws FileException {
+        String outputFileName = this.getFilePath(FilenameUtils.removeExtension(
+                inputFile.getOriginalFilename()) + ".pdf");
+        File outputFile = new File(outputFileName);
+        return outputFile;
+
+    }
+
+    @Override
+    public String getFilePath(String fileName) throws FileException {
         try {
-            String outputFileName = FilenameUtils.removeExtension(
-                    inputFile.getOriginalFilename()) + ".pdf";
-            String uploadFolder = properties.getUploadFolder();
-            Files.createDirectories(Paths.get(uploadFolder));
-            File outputFile = new File(uploadFolder + outputFileName);
-            return outputFile;
+            String folder = properties.getUploadFolder();
+            Files.createDirectories(Paths.get(folder));
+            return folder + fileName;
         } catch (IOException ex) {
             throw new FileException(ErrorConstant.FILE_ERROR, ex);
         }

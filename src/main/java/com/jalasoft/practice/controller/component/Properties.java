@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "converter")
 public class Properties {
     String uploadFolder;
+    String inputFolder;
 
     public String getUploadFolder() {
         return uploadFolder;
@@ -28,5 +29,13 @@ public class Properties {
 
     public void setUploadFolder(String uploadFolder) {
         this.uploadFolder = uploadFolder;
+    }
+
+    public String getInputFolder() {
+        return inputFolder;
+    }
+
+    public void setInputFolder(String inputFolder) {
+        this.inputFolder = inputFolder;
     }
 }

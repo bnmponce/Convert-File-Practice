@@ -3,8 +3,8 @@ package com.jalasoft.practice.controller.endpoint;
 import com.jalasoft.practice.controller.exception.FileException;
 import com.jalasoft.practice.controller.response.ErrorResponse;
 import com.jalasoft.practice.controller.response.OkResponse;
-import com.jalasoft.practice.controller.service.FileService;
-import com.jalasoft.practice.controller.utils.CastMultipartToFile;
+import com.jalasoft.practice.controller.service.StoreInputFileService;
+import com.jalasoft.practice.controller.service.StoreOutputFileService;
 import com.jalasoft.practice.model.convert.ConvertFile;
 import com.jalasoft.practice.model.convert.exception.ConvertException;
 import com.jalasoft.practice.model.convert.exception.ParameterInvalidException;
@@ -28,34 +28,35 @@ import java.io.FileOutputStream;
 public class ConvertController {
 
     @Autowired
-    FileService fileService;
+    StoreOutputFileService outputFileService;
+
+    @Autowired
+    StoreInputFileService inputFileService;
 
     @PostMapping("/convert")
     public ResponseEntity convertFile(@RequestParam("file") MultipartFile inputFile) {
         ConvertFile convertFile = new ConvertFile();
-        CastMultipartToFile convertToFile = new CastMultipartToFile();
+        //CastMultipartToFile convertToFile = new CastMultipartToFile();
         String fileInput;
 
         try {
-            File file = convertToFile.convertMultiPartToFile(inputFile);
+            File file = inputFileService.store(inputFile);
             ConvertParam param = new ConvertParam(file, new FileInputStream(file),
-                    new FileOutputStream(fileService.store(inputFile)));
+                    new FileOutputStream(outputFileService.store(inputFile)));
             param.validateParam();
             Result result = convertFile.convert(param);
             return ResponseEntity.ok().body(
                     new OkResponse<Integer>(result.getPathResult(), HttpServletResponse.SC_OK));
-
-        } catch (FileException ex){
+        } catch (FileException ex) {
             return ResponseEntity.badRequest().body(
                     new ErrorResponse<Integer>(ex.getMessage(), HttpServletResponse.SC_BAD_REQUEST));
-
-        }catch (ParameterInvalidException ex){
+        } catch (ParameterInvalidException ex) {
             return ResponseEntity.badRequest().body(
                     new ErrorResponse<Integer>(ex.getMessage(), HttpServletResponse.SC_BAD_REQUEST));
-        }catch (ConvertException ex) {
+        } catch (ConvertException ex) {
             return ResponseEntity.badRequest().body(
                     new ErrorResponse<Integer>(ex.getMessage(), HttpServletResponse.SC_BAD_REQUEST));
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().body(
                     new ErrorResponse<Integer>(ex.getMessage(), HttpServletResponse.SC_BAD_REQUEST));
         }
