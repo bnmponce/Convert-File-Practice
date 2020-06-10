@@ -17,6 +17,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,5 +52,12 @@ public class StoreOutputFileService implements IStoreFile {
         } catch (IOException ex) {
             throw new FileException(ErrorConstant.FILE_ERROR, ex);
         }
+    }
+
+    public String getDownloadLink(File file) {
+        return ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/api/v1/download/")
+                .path(file.getName())
+                .toUriString();
     }
 }

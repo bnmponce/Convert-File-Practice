@@ -36,17 +36,17 @@ public class ConvertController {
     @PostMapping("/convert")
     public ResponseEntity convertFile(@RequestParam("file") MultipartFile inputFile) {
         ConvertFile convertFile = new ConvertFile();
-        //CastMultipartToFile convertToFile = new CastMultipartToFile();
-        String fileInput;
 
         try {
             File file = inputFileService.store(inputFile);
+            File outputFile = outputFileService.store(inputFile);
             ConvertParam param = new ConvertParam(file, new FileInputStream(file),
-                    new FileOutputStream(outputFileService.store(inputFile)));
+                    new FileOutputStream(outputFile));
             param.validateParam();
             Result result = convertFile.convert(param);
+            String fileDownLoadUri = outputFileService.getDownloadLink(outputFile);
             return ResponseEntity.ok().body(
-                    new OkResponse<Integer>(result.getPathResult(), HttpServletResponse.SC_OK));
+                    new OkResponse<Integer>(fileDownLoadUri, HttpServletResponse.SC_OK));
         } catch (FileException ex) {
             return ResponseEntity.badRequest().body(
                     new ErrorResponse<Integer>(ex.getMessage(), HttpServletResponse.SC_BAD_REQUEST));

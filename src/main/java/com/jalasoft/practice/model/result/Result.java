@@ -15,17 +15,17 @@ package com.jalasoft.practice.model.result;
  * @autor Magdalena
  */
 public class Result {
-    private String pathResult;
+    private String result;
 
-    public Result(String pathResult) {
-        this.pathResult = pathResult;
+    public Result(String result) {
+        this.result = result;
     }
 
-    public String getPathResult() {
-        return pathResult;
+    public String getResult() {
+        return result;
     }
 
-    public void setPathResult(String pathResult) {
-        this.pathResult = pathResult;
+    public void setResult(String result) {
+        this.result = result;
     }
 }
