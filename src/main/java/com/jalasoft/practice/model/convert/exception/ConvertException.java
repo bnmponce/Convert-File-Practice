@@ -25,4 +25,6 @@ public class ConvertException extends Exception {
     public ConvertException(Throwable ex) {
         super(MESSAGE, ex);
     }
+
+    public ConvertException(String currentMessage){ super(currentMessage);}
 }

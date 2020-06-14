@@ -10,11 +10,11 @@
 
 package com.jalasoft.practice.model.convert;
 
+import com.jalasoft.practice.common.exception.InvalidDataException;
 import com.jalasoft.practice.model.convert.exception.ConvertException;
-import com.jalasoft.practice.model.convert.exception.ParameterInvalidException;
-import com.jalasoft.practice.model.convert.parameter.ConvertParam;
+import com.jalasoft.practice.model.convert.parameter.ConvertFileParam;
 import com.jalasoft.practice.model.result.Result;
 
 public interface IConvert {
-    Result convert(ConvertParam param) throws ParameterInvalidException, ConvertException;
+    Result convert(ConvertFileParam param) throws InvalidDataException, ConvertException;
 }

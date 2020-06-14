@@ -8,18 +8,25 @@
  *
  */
 
-package com.jalasoft.practice.controller.exception;
+package com.jalasoft.practice.common.exception;
+
+import java.io.IOException;
 
 /**
  * @version 1.1
  * @autor Magdalena
  */
-public class FileException extends Exception {
-    public FileException(String message, Throwable ex) {
+public class InvalidDataException extends Exception {
+    public InvalidDataException(String message, Throwable ex){
         super(message, ex);
     }
 
-    public FileException(String message) {
+    public InvalidDataException(String message){
         super(message);
     }
+
+    public InvalidDataException(Throwable ex){
+        super(ex);
+    }
+
 }

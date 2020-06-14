@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.net.MalformedURLException;
-import java.net.URLConnection;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 

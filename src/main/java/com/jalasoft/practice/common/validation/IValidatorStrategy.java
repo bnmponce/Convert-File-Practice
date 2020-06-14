@@ -8,15 +8,10 @@
  *
  */
 
-package com.jalasoft.practice.controller.service;
+package com.jalasoft.practice.common.validation;
 
 import com.jalasoft.practice.common.exception.InvalidDataException;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-
-
-public interface IStoreFile<T> {
-    File store(MultipartFile inputFile) throws InvalidDataException;
-    T getFilePath(String fileName) throws InvalidDataException;
+public interface IValidatorStrategy {
+    void validate() throws InvalidDataException;
 }

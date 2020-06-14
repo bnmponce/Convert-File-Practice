@@ -8,15 +8,25 @@
  *
  */
 
-package com.jalasoft.practice.controller.service;
+package com.jalasoft.practice.controller.request;
 
 import com.jalasoft.practice.common.exception.InvalidDataException;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
+/**
+ * @version 1.1
+ * @autor Magdalena
+ */
+public abstract class RequestParameter {
+    protected MultipartFile file;
 
+    public RequestParameter(MultipartFile file){
+        this.file = file;
+    }
 
-public interface IStoreFile<T> {
-    File store(MultipartFile inputFile) throws InvalidDataException;
-    T getFilePath(String fileName) throws InvalidDataException;
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public abstract void validate() throws InvalidDataException;
 }

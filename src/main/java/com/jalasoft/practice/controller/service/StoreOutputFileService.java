@@ -10,9 +10,9 @@
 
 package com.jalasoft.practice.controller.service;
 
+import com.jalasoft.practice.common.exception.InvalidDataException;
 import com.jalasoft.practice.controller.component.Properties;
 import com.jalasoft.practice.controller.constant.ErrorConstant;
-import com.jalasoft.practice.controller.exception.FileException;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,8 @@ public class StoreOutputFileService implements IStoreFile {
     private Properties properties;
 
     @Override
-    public File store(MultipartFile inputFile) throws FileException {
+    public File store(MultipartFile inputFile) throws InvalidDataException {
+
         String outputFileName = this.getFilePath(FilenameUtils.removeExtension(
                 inputFile.getOriginalFilename()) + ".pdf");
         File outputFile = new File(outputFileName);
@@ -44,13 +45,13 @@ public class StoreOutputFileService implements IStoreFile {
     }
 
     @Override
-    public String getFilePath(String fileName) throws FileException {
+    public String getFilePath(String fileName) throws InvalidDataException {
         try {
             String folder = properties.getUploadFolder();
             Files.createDirectories(Paths.get(folder));
             return folder + fileName;
         } catch (IOException ex) {
-            throw new FileException(ErrorConstant.FILE_ERROR, ex);
+            throw new InvalidDataException(ErrorConstant.FILE_ERROR, ex);
         }
     }
 
